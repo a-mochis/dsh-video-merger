@@ -46,6 +46,8 @@ Only mixed folders are normalized, and then to the first clip's spec.
   scanned root), or keep the original per-folder layout.
 - **Web UI.** In-app directory browser, folder checklist, live progress, speed,
   ETA, cancel, play, and reveal in file manager.
+- **Data management.** One dialog clears the current selection, the remembered
+  root folders, or the merge history; **Clear everything** wipes all three.
 - **Two more entry points.** The `merge_folder_videos` DSH tool and a standalone
   CLI, both using the same engine.
 - **ffmpeg bootstrap.** Detects an existing install; on Windows the UI can download
@@ -114,6 +116,9 @@ release/update checklist.
    result back into its source folder.
 5. Click **开始合并**. Progress, speed, and ETA are shown per folder and overall.
 6. Play the result or reveal it in the file manager when the job finishes.
+7. Open **管理 / Manage** in the header to switch back to a recent root folder,
+   clear the current selection, clear the folder history or merge history, or
+   wipe everything at once.
 
 ### Screenshots
 
@@ -295,6 +300,7 @@ with **Overwrite** enabled; the job is resumable per folder, not per clip.
   会补静音。
 - 可把所有结果统一输出到一个文件夹（默认扫描根目录），也可以保持写回各源文件夹。
 - Web UI 支持目录浏览、文件夹勾选、实时进度、取消、播放和定位。
+- 顶部「管理」弹窗可清空当前选择、历史文件夹记录或历史生成记录，也可一键清空全部。
 - 同时提供 `merge_folder_videos` 对话工具和 `bin/merge-videos.mjs` 命令行。
 
 ### 安装
@@ -324,6 +330,7 @@ after a bare `dsh plugin add`, make sure `dsh-video-merger` is listed under
 ### 使用
 
 - 图形界面：选根目录 → 勾选文件夹 → 按需勾选「统一输出」→ 开始合并。
+- 顶部「管理」可查看最近使用的根目录，清空当前选择、历史文件夹或历史生成记录。
 
 #### 界面示意
 
@@ -336,6 +343,7 @@ after a bare `dsh plugin add`, make sure `dsh-video-merger` is listed under
 留空即输出到扫描根目录；点「开始合并」后可查看总进度、速度和结果。
 
 ![核对并合并](docs/how-to-merge.svg)
+
 - 工具：`merge_folder_videos root="E:\videos" outputDir="E:\videos\merged"`。
 - 命令行：`node bin/merge-videos.mjs "E:\videos" --out "E:\videos\merged"`。
 

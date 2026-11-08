@@ -1,6 +1,6 @@
 {
   "name": "dsh-video-merger",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "DeepSeek Harness plugin that merges every folder's videos into one file while keeping the source specs. 按文件夹合并视频，保持分辨率/帧率/编码规格不变。",
   "type": "module",
   "license": "MIT",
@@ -51,7 +51,7 @@
   ],
   "scripts": {
     "check": "node --check lib/index.js && node --check lib/engine.js && node --check lib/client.js && node --check bin/merge-videos.mjs",
-    "test": "node test/market.mjs && node test/browse.mjs && node test/render.mjs",
+    "test": "node test/market.mjs && node test/browse.mjs && node test/management.mjs && node test/render.mjs",
     "test:market": "node test/market.mjs",
     "test:merge": "node test/run.mjs",
     "fixtures": "node test/make-fixtures.mjs"

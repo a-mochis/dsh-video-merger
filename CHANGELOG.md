@@ -19,6 +19,17 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Documented the `dsh plugin add` installation path alongside
   `plugin_manager install_bundle`.
 
+## [1.0.4] - 2026-11-08
+
+### Added
+
+- A Data management dialog that can clear the current selection, the folder
+  history, and the merge history, plus a one-click "Clear everything" action.
+- The last eight root folders are remembered and can be restored with one click.
+- The last twenty finished merge jobs are recorded locally with status, folder
+  count, output size and output folder.
+- `test/management.mjs` for the history caps, de-duplication and formatting.
+
 ## [1.0.3] - 2026-11-08
 
 ### Changed

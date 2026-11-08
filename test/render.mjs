@@ -65,7 +65,7 @@ const props = {
 };
 const html = renderToStaticMarkup(React.createElement(captured.component, props));
 assert.ok(html.length > 3000, `rendered HTML is too short: ${html.length}`);
-for (const needle of ["视频合并", "根目录", "统一输出", "输出文件夹"]) {
+for (const needle of ["视频合并", "根目录", "统一输出", "输出文件夹", "管理"]) {
   assert.ok(html.includes(needle), `rendered HTML is missing ${needle}`);
 }
 console.log(`render: ok (${html.length} chars)`);
