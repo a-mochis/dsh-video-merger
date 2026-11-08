@@ -24,6 +24,7 @@ Only mixed folders are normalized, and then to the first clip's spec.
 - [Requirements](#requirements)
 - [Install](#install)
 - [Usage](#usage)
+- [Screenshots](#screenshots)
 - [Output rules](#output-rules)
 - [How it works](#how-it-works)
 - [ffmpeg resolution](#ffmpeg-resolution)
@@ -81,6 +82,19 @@ unzip it, and install the extracted folder the same way.
 After installing or updating, force-refresh the Web UI (`Ctrl+Shift+R`). Open any
 session and choose the **视频合并 / Video Merge** tab in the session tab bar.
 
+### Install from Discover
+
+The repository also publishes a one-plugin market index. In DSH open
+**Plugins → Discover → Index sources → Add index source** and paste:
+
+```text
+https://cdn.jsdelivr.net/gh/a-mochis/dsh-video-merger@main/market/index.json
+```
+
+The **Video Merger** card then appears in Discover and installs the same bundle.
+This is a personal index hosted beside the project, not an entry in the curated
+community catalog.
+
 > The plugin has no runtime npm dependencies. `npm install` is only needed for
 > the client tests (`react` / `react-dom` are dev dependencies).
 
@@ -98,6 +112,20 @@ session and choose the **视频合并 / Video Merge** tab in the session tab bar
    result back into its source folder.
 5. Click **开始合并**. Progress, speed, and ETA are shown per folder and overall.
 6. Play the result or reveal it in the file manager when the job finishes.
+
+### Screenshots
+
+**1. Choose the root folder.** Click **选择文件夹 / Select folder**, browse into the
+target folder in the built-in browser, then click **选择此文件夹 / Select this folder**.
+The path is filled back and scanned automatically.
+
+![Choosing the root folder](docs/how-to-select-folder.svg)
+
+**2. Review and merge.** Check the folders you want, leave **统一输出到同一个文件夹**
+checked to collect every result in one place (the root by default), then click
+**开始合并 / Start merge**. Progress, speed, and the finished output are shown per folder.
+
+![Reviewing folders and merging](docs/how-to-merge.svg)
 
 ### Tool
 
@@ -262,6 +290,18 @@ plugin_manager install_bundle target = <dsh-video-merger 的绝对路径>
 ### 使用
 
 - 图形界面：选根目录 → 勾选文件夹 → 按需勾选「统一输出」→ 开始合并。
+
+#### 界面示意
+
+**1. 选择根目录**：点「选择文件夹」，在插件自带的目录浏览器中进入目标文件夹，
+再点「选择此文件夹」。路径会回填并自动扫描。
+
+![选择根目录](docs/how-to-select-folder.svg)
+
+**2. 核对并合并**：勾选要处理的文件夹；「统一输出到同一个文件夹」默认勾选，
+留空即输出到扫描根目录；点「开始合并」后可查看总进度、速度和结果。
+
+![核对并合并](docs/how-to-merge.svg)
 - 工具：`merge_folder_videos root="E:\videos" outputDir="E:\videos\merged"`。
 - 命令行：`node bin/merge-videos.mjs "E:\videos" --out "E:\videos\merged"`。
 

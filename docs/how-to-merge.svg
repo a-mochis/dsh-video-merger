@@ -1,0 +1,175 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="860" viewBox="0 0 1200 860" role="img" aria-labelledby="title desc">
+  <title id="title">Scanning, choosing folders and merging in dsh-video-merger</title>
+  <desc id="desc">A four-step illustration: click Scan, review the folder list and unified output option, click Start merge, then play or reveal the result.</desc>
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f4f7fc"/>
+      <stop offset="1" stop-color="#eef2f8"/>
+    </linearGradient>
+    <linearGradient id="accent2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6aa4ff"/>
+      <stop offset="1" stop-color="#3f7df4"/>
+    </linearGradient>
+    <linearGradient id="green" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#43c59e"/>
+      <stop offset="1" stop-color="#2fae87"/>
+    </linearGradient>
+    <filter id="shadow2" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#1b2b4b" flood-opacity="0.12"/>
+    </filter>
+    <filter id="soft2" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#1b2b4b" flood-opacity="0.10"/>
+    </filter>
+    <style>
+      .sans { font-family: 'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Segoe UI',sans-serif; }
+      .mono { font-family: 'Cascadia Code','Consolas','SFMono-Regular',monospace; }
+      .muted { fill: #6b7a90; }
+      .faint { fill: #95a2b5; }
+      .ink { fill: #1c2a3e; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="860" fill="url(#bg2)"/>
+
+  <!-- heading -->
+  <g class="sans">
+    <rect x="70" y="44" width="166" height="30" rx="15" fill="#e5edff"/>
+    <text x="153" y="64" text-anchor="middle" font-size="12.5" font-weight="700" fill="#3f7df4" letter-spacing="1.5">DSH · VIDEO MERGER</text>
+    <text x="70" y="112" font-size="34" font-weight="700" class="ink">② 核对并开始合并</text>
+    <text x="70" y="142" font-size="17" class="muted">Review the scanned folders, choose where results go, then merge — lossless whenever the clips already match.</text>
+  </g>
+
+  <!-- app window -->
+  <g filter="url(#shadow2)">
+    <rect x="70" y="170" width="1060" height="620" rx="20" fill="#ffffff"/>
+  </g>
+  <g class="sans">
+    <rect x="70" y="170" width="1060" height="58" rx="20" fill="#fbfcfe"/>
+    <rect x="70" y="208" width="1060" height="20" fill="#fbfcfe"/>
+    <line x1="70" y1="228" x2="1130" y2="228" stroke="#e8edf5"/>
+    <text x="100" y="205" font-size="17" font-weight="700" class="ink">视频合并</text>
+    <text x="190" y="205" font-size="13" class="faint">Video Merge</text>
+    <g transform="translate(900 196)">
+      <rect width="104" height="30" rx="15" fill="#eaf8f3"/>
+      <circle cx="16" cy="15" r="4" fill="#2fae87"/>
+      <text x="29" y="20" font-size="12" fill="#1f8f6d">ffmpeg 就绪</text>
+    </g>
+  </g>
+
+  <!-- left column -->
+  <g class="sans">
+    <text x="100" y="266" font-size="13" font-weight="700" class="ink">扫描结果</text>
+    <text x="174" y="266" font-size="12.5" class="muted">5 个可合并文件夹 · 12 个视频 · 共 3.8 GB</text>
+    <rect x="596" y="246" width="94" height="30" rx="9" fill="#f1f5fb" stroke="#e0e8f4"/>
+    <text x="643" y="266" text-anchor="middle" font-size="12" fill="#51637d">重新扫描</text>
+
+    <!-- folder rows -->
+    <g>
+      <rect x="100" y="284" width="590" height="52" rx="11" fill="#ffffff" stroke="#e8eef7"/>
+      <rect x="114" y="300" width="18" height="18" rx="5" fill="#3f7df4"/>
+      <path d="M118 309 l4 4 l7 -8" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="146" y="311" font-size="14" font-weight="700" class="ink">2024</text>
+      <text x="146" y="328" font-size="11.5" class="faint">3 个视频 · 01:24</text>
+      <text x="666" y="315" text-anchor="end" font-size="11.5" fill="#2fae87">同规格 · 无损</text>
+
+      <rect x="100" y="346" width="590" height="52" rx="11" fill="#ffffff" stroke="#e8eef7"/>
+      <rect x="114" y="362" width="18" height="18" rx="5" fill="#3f7df4"/>
+      <path d="M118 371 l4 4 l7 -8" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="146" y="373" font-size="14" font-weight="700" class="ink">旅行 / 日本</text>
+      <text x="146" y="390" font-size="11.5" class="faint">2 个视频 · 00:48</text>
+      <text x="666" y="377" text-anchor="end" font-size="11.5" fill="#2fae87">同规格 · 无损</text>
+
+      <rect x="100" y="408" width="590" height="52" rx="11" fill="#ffffff" stroke="#e8eef7"/>
+      <rect x="114" y="424" width="18" height="18" rx="5" fill="#3f7df4"/>
+      <path d="M118 433 l4 4 l7 -8" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="146" y="435" font-size="14" font-weight="700" class="ink">家庭录像</text>
+      <text x="146" y="452" font-size="11.5" class="faint">4 个视频 · 03:12</text>
+      <text x="666" y="439" text-anchor="end" font-size="11.5" fill="#c98a2e">混合规格 · 自动转码</text>
+
+      <rect x="100" y="470" width="590" height="52" rx="11" fill="#ffffff" stroke="#e8eef7"/>
+      <rect x="114" y="486" width="18" height="18" rx="5" fill="#3f7df4"/>
+      <path d="M118 495 l4 4 l7 -8" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="146" y="497" font-size="14" font-weight="700" class="ink">素材 / B-roll</text>
+      <text x="146" y="514" font-size="11.5" class="faint">3 个视频 · 00:36</text>
+      <text x="666" y="501" text-anchor="end" font-size="11.5" fill="#2fae87">同规格 · 无损</text>
+    </g>
+
+    <!-- unified output -->
+    <rect x="100" y="542" width="590" height="70" rx="11" fill="#f7faff" stroke="#dce7fa"/>
+    <rect x="114" y="558" width="18" height="18" rx="5" fill="#3f7df4"/>
+    <path d="M118 567 l4 4 l7 -8" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="146" y="572" font-size="13.5" font-weight="700" class="ink">统一输出到同一个文件夹</text>
+    <text x="146" y="591" font-size="11.5" class="muted">取消勾选则写回各自的源文件夹</text>
+    <rect x="392" y="556" width="216" height="34" rx="8" fill="#ffffff" stroke="#dbe4f0"/>
+    <text x="404" y="578" font-size="12" class="mono" fill="#2a3a52">E:\videos\merged</text>
+    <rect x="616" y="556" width="58" height="34" rx="8" fill="#eef3fb"/>
+    <text x="645" y="578" text-anchor="middle" font-size="11.5" fill="#51637d">选择</text>
+
+    <!-- start button -->
+    <rect x="100" y="632" width="300" height="50" rx="12" fill="url(#accent2)"/>
+    <text x="250" y="663" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">开始合并</text>
+    <text x="420" y="654" font-size="12" class="muted">逐文件夹顺序执行，可随时取消。</text>
+    <text x="420" y="672" font-size="12" class="faint">输出会跳过 * _merged.* 文件。</text>
+    <circle cx="380" cy="640" r="16" fill="#3f7df4"/>
+    <text x="380" y="646" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">2</text>
+  </g>
+
+  <!-- right progress card -->
+  <g filter="url(#soft2)">
+    <rect x="730" y="246" width="370" height="436" rx="16" fill="#fbfcfe" stroke="#e8eef7"/>
+  </g>
+  <g class="sans">
+    <text x="754" y="280" font-size="15" font-weight="700" class="ink">任务进度</text>
+    <text x="754" y="300" font-size="11.5" class="faint">正在合并 3 / 5 个文件夹</text>
+    <text x="1074" y="300" text-anchor="end" font-size="13" font-weight="700" fill="#3f7df4">68%</text>
+    <rect x="754" y="312" width="322" height="8" rx="4" fill="#e8eef7"/>
+    <rect x="754" y="312" width="219" height="8" rx="4" fill="url(#accent2)"/>
+
+    <!-- per folder -->
+    <g font-size="11.5">
+      <text x="754" y="348" class="ink">2024</text>
+      <text x="1074" y="348" text-anchor="end" fill="#2fae87">完成 · 01:12</text>
+      <rect x="754" y="358" width="322" height="5" rx="2.5" fill="#e8eef7"/>
+      <rect x="754" y="358" width="322" height="5" rx="2.5" fill="url(#green)"/>
+
+      <text x="754" y="388" class="ink">旅行 / 日本</text>
+      <text x="1074" y="388" text-anchor="end" fill="#2fae87">完成 · 00:41</text>
+      <rect x="754" y="398" width="322" height="5" rx="2.5" fill="#e8eef7"/>
+      <rect x="754" y="398" width="322" height="5" rx="2.5" fill="url(#green)"/>
+
+      <text x="754" y="428" class="ink">家庭录像</text>
+      <text x="1074" y="428" text-anchor="end" fill="#3f7df4">62% · 12.4×</text>
+      <rect x="754" y="438" width="322" height="5" rx="2.5" fill="#e8eef7"/>
+      <rect x="754" y="438" width="200" height="5" rx="2.5" fill="url(#accent2)"/>
+
+      <text x="754" y="468" class="ink">素材 / B-roll</text>
+      <text x="1074" y="468" text-anchor="end" class="faint">等待</text>
+      <rect x="754" y="478" width="322" height="5" rx="2.5" fill="#e8eef7"/>
+    </g>
+
+    <!-- output card -->
+    <rect x="754" y="504" width="322" height="76" rx="12" fill="#ffffff" stroke="#e2ebf7"/>
+    <rect x="766" y="518" width="34" height="34" rx="8" fill="#eaf8f3"/>
+    <path d="M775 528 v14 l11 -7 z" fill="#2fae87"/>
+    <text x="810" y="532" font-size="12.5" font-weight="700" class="ink">2024_merged.mp4</text>
+    <text x="810" y="550" font-size="11" class="faint">1.2 GB · 播放</text>
+    <text x="1060" y="550" text-anchor="end" font-size="11" fill="#3f7df4">定位</text>
+    <text x="754" y="602" font-size="11" class="faint">完成后可播放或在文件管理器中定位。</text>
+    <circle cx="1074" cy="596" r="17" fill="#3f7df4"/>
+    <text x="1074" y="602" text-anchor="middle" font-size="16" font-weight="700" fill="#ffffff">3</text>
+  </g>
+
+  <!-- scan badge -->
+  <circle cx="688" cy="240" r="17" fill="#3f7df4"/>
+  <g class="sans"><text x="688" y="246" text-anchor="middle" font-size="16" font-weight="700" fill="#ffffff">1</text></g>
+
+  <!-- legend -->
+  <g class="sans" font-size="13">
+    <circle cx="86" cy="820" r="11" fill="#3f7df4"/><text x="86" y="825" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">1</text>
+    <text x="106" y="825" class="ink">扫描并核对文件夹</text>
+    <circle cx="264" cy="820" r="11" fill="#3f7df4"/><text x="264" y="825" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">2</text>
+    <text x="284" y="825" class="ink">勾选统一输出（可选）并开始合并</text>
+    <circle cx="544" cy="820" r="11" fill="#3f7df4"/><text x="544" y="825" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">3</text>
+    <text x="564" y="825" class="ink">播放或在文件管理器中查看结果</text>
+  </g>
+</svg>

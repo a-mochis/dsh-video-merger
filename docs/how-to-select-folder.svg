@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="820" viewBox="0 0 1200 820" role="img" aria-labelledby="title desc">
+  <title id="title">Selecting a folder in dsh-video-merger</title>
+  <desc id="desc">A three-step illustration: click Select folder, browse into a folder in the built-in browser, then confirm with Select this folder.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f4f7fc"/>
+      <stop offset="1" stop-color="#eef2f8"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6aa4ff"/>
+      <stop offset="1" stop-color="#3f7df4"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#1b2b4b" flood-opacity="0.12"/>
+    </filter>
+    <filter id="soft" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#1b2b4b" flood-opacity="0.10"/>
+    </filter>
+    <style>
+      .sans { font-family: 'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Segoe UI',sans-serif; }
+      .mono { font-family: 'Cascadia Code','Consolas','SFMono-Regular',monospace; }
+      .muted { fill: #6b7a90; }
+      .faint { fill: #95a2b5; }
+      .ink { fill: #1c2a3e; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="820" fill="url(#bg)"/>
+
+  <!-- page heading -->
+  <g class="sans">
+    <rect x="70" y="44" width="166" height="30" rx="15" fill="#e5edff"/>
+    <text x="153" y="64" text-anchor="middle" font-size="12.5" font-weight="700" fill="#3f7df4" letter-spacing="1.5">DSH · VIDEO MERGER</text>
+    <text x="70" y="112" font-size="34" font-weight="700" class="ink">① 选择要处理的根目录</text>
+    <text x="70" y="142" font-size="17" class="muted">Choose the root folder — every folder below it that contains at least two videos becomes one merged video.</text>
+  </g>
+
+  <!-- app window -->
+  <g filter="url(#shadow)">
+    <rect x="70" y="170" width="1060" height="560" rx="20" fill="#ffffff"/>
+  </g>
+  <g class="sans">
+    <rect x="70" y="170" width="1060" height="58" rx="20" fill="#fbfcfe"/>
+    <rect x="70" y="208" width="1060" height="20" fill="#fbfcfe"/>
+    <line x1="70" y1="228" x2="1130" y2="228" stroke="#e8edf5"/>
+    <text x="100" y="205" font-size="17" font-weight="700" class="ink">视频合并</text>
+    <text x="190" y="205" font-size="13" class="faint">Video Merge</text>
+    <g transform="translate(905 196)">
+      <rect width="86" height="30" rx="15" fill="#eef3fb"/>
+      <text x="43" y="20" text-anchor="middle" font-size="12" fill="#51637d">已扫描 0 个</text>
+    </g>
+  </g>
+
+  <!-- root folder card -->
+  <g class="sans">
+    <rect x="100" y="258" width="1000" height="112" rx="14" fill="#f8fafd" stroke="#e6ecf5"/>
+    <text x="124" y="290" font-size="14" font-weight="700" class="ink">根目录 / Root folder</text>
+    <text x="124" y="312" font-size="12.5" class="muted">扫描这个目录下的所有子文件夹，每个文件夹单独合并成一个视频。</text>
+    <rect x="124" y="326" width="610" height="30" rx="8" fill="#ffffff" stroke="#dbe4f0"/>
+    <text x="138" y="346" font-size="13" class="mono" fill="#2a3a52">E:\videos</text>
+    <rect x="752" y="322" width="152" height="38" rx="10" fill="url(#accent)"/>
+    <text x="828" y="347" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">选择文件夹</text>
+    <text x="920" y="345" font-size="12" class="muted">也可以直接输入路径</text>
+    <!-- step 1 badge -->
+    <circle cx="1000" cy="252" r="17" fill="#3f7df4"/>
+    <text x="1000" y="258" text-anchor="middle" font-size="16" font-weight="700" fill="#ffffff">1</text>
+  </g>
+
+  <!-- modal backdrop -->
+  <rect x="70" y="228" width="1060" height="502" fill="#17243a" opacity="0.18" rx="14"/>
+
+  <!-- modal -->
+  <g filter="url(#soft)">
+    <rect x="230" y="300" width="740" height="402" rx="18" fill="#ffffff"/>
+  </g>
+  <g class="sans">
+    <text x="262" y="342" font-size="20" font-weight="700" class="ink">选择文件夹</text>
+    <text x="262" y="365" font-size="12.5" class="muted">只显示子文件夹。进入目标文件夹后点“选择此文件夹”。</text>
+
+    <!-- path bar -->
+    <rect x="262" y="386" width="676" height="40" rx="10" fill="#f5f8fc" stroke="#e3eaf4"/>
+    <path d="M280 400 l6 6 l-6 6" fill="none" stroke="#6b7a90" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="296" y="412" font-size="13" class="mono" fill="#2a3a52">E:\videos</text>
+    <g transform="translate(884 394)">
+      <rect width="36" height="24" rx="7" fill="#ffffff" stroke="#dbe4f0"/>
+      <text x="18" y="17" text-anchor="middle" font-size="13" fill="#51637d">↑</text>
+    </g>
+
+    <!-- folder rows -->
+    <g>
+      <rect x="262" y="444" width="330" height="44" rx="10" fill="#ffffff" stroke="#e8eef7"/>
+      <path d="M280 456 h13 l4 4 h14 v18 h-31 z" fill="#9db8ff"/>
+      <text x="318" y="472" font-size="14" class="ink">2024</text>
+      <text x="580" y="472" text-anchor="end" font-size="12" class="faint">12 个视频</text>
+
+      <rect x="608" y="444" width="330" height="44" rx="10" fill="#ffffff" stroke="#e8eef7"/>
+      <path d="M626 456 h13 l4 4 h14 v18 h-31 z" fill="#9db8ff"/>
+      <text x="664" y="472" font-size="14" class="ink">2025</text>
+      <text x="926" y="472" text-anchor="end" font-size="12" class="faint">8 个视频</text>
+
+      <rect x="262" y="498" width="330" height="44" rx="10" fill="#eef4ff" stroke="#7fa8ff" stroke-width="1.5"/>
+      <path d="M280 510 h13 l4 4 h14 v18 h-31 z" fill="#4f8cff"/>
+      <text x="318" y="526" font-size="14" font-weight="700" class="ink">旅行 / 日本</text>
+      <text x="580" y="526" text-anchor="end" font-size="12" fill="#3f7df4">2 个视频 · 已进入</text>
+
+      <rect x="608" y="498" width="330" height="44" rx="10" fill="#ffffff" stroke="#e8eef7"/>
+      <path d="M626 510 h13 l4 4 h14 v18 h-31 z" fill="#9db8ff"/>
+      <text x="664" y="526" font-size="14" class="ink">家庭录像</text>
+      <text x="926" y="526" text-anchor="end" font-size="12" class="faint">21 个视频</text>
+
+      <rect x="262" y="552" width="330" height="44" rx="10" fill="#ffffff" stroke="#e8eef7"/>
+      <path d="M280 564 h13 l4 4 h14 v18 h-31 z" fill="#9db8ff"/>
+      <text x="318" y="580" font-size="14" class="ink">素材 / B-roll</text>
+      <text x="580" y="580" text-anchor="end" font-size="12" class="faint">5 个视频</text>
+
+      <rect x="608" y="552" width="330" height="44" rx="10" fill="#ffffff" stroke="#e8eef7"/>
+      <path d="M626 564 h13 l4 4 h14 v18 h-31 z" fill="#9db8ff"/>
+      <text x="664" y="580" font-size="14" class="ink">无人机</text>
+      <text x="926" y="580" text-anchor="end" font-size="12" class="faint">3 个视频</text>
+    </g>
+
+    <!-- footer -->
+    <line x1="262" y1="624" x2="938" y2="624" stroke="#e8eef7"/>
+    <text x="262" y="660" font-size="12.5" class="muted">当前路径</text>
+    <text x="326" y="660" font-size="12.5" class="mono" fill="#2a3a52">E:\videos\旅行\日本</text>
+    <rect x="748" y="642" width="78" height="38" rx="10" fill="#f1f5fb"/>
+    <text x="787" y="666" text-anchor="middle" font-size="13" fill="#51637d">取消</text>
+    <rect x="838" y="642" width="112" height="38" rx="10" fill="url(#accent)"/>
+    <text x="894" y="666" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">选择此文件夹</text>
+    <!-- step 2 badge -->
+    <circle cx="968" cy="618" r="17" fill="#3f7df4"/>
+    <text x="968" y="624" text-anchor="middle" font-size="16" font-weight="700" fill="#ffffff">2</text>
+  </g>
+
+  <!-- step 3 card -->
+  <g class="sans">
+    <rect x="262" y="716" width="330" height="40" rx="10" fill="#ffffff" stroke="#dfe8f4"/>
+    <text x="278" y="742" font-size="12.5" class="muted">选择后，这个路径会填回根目录并自动扫描。</text>
+    <circle cx="622" cy="736" r="16" fill="#3f7df4"/>
+    <text x="622" y="742" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">3</text>
+  </g>
+
+  <!-- legend -->
+  <g class="sans" font-size="13">
+    <circle cx="86" cy="760" r="11" fill="#3f7df4"/><text x="86" y="765" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">1</text>
+    <text x="106" y="765" class="ink">点击“选择文件夹”</text>
+    <circle cx="276" cy="760" r="11" fill="#3f7df4"/><text x="276" y="765" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">2</text>
+    <text x="296" y="765" class="ink">进入目标文件夹，点“选择此文件夹”</text>
+    <circle cx="590" cy="760" r="11" fill="#3f7df4"/><text x="590" y="765" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">3</text>
+    <text x="610" y="765" class="ink">自动回填并扫描，可展开核对片段顺序</text>
+  </g>
+</svg>

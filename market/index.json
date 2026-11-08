@@ -1,0 +1,83 @@
+{
+  "format": 1,
+  "title": {
+    "en": "a-mochis DSH plugins",
+    "zh": "a-mochis DSH 插件"
+  },
+  "description": {
+    "en": "Small, focused DeepSeek Harness plugins by a-mochis.",
+    "zh": "由 a-mochis 维护的 DeepSeek Harness 插件。"
+  },
+  "metadata": {
+    "categories": {
+      "video": {
+        "title": {
+          "en": "Video",
+          "zh": "视频"
+        }
+      }
+    },
+    "labels": {
+      "ffmpeg": {
+        "title": {
+          "en": "FFmpeg",
+          "zh": "FFmpeg"
+        }
+      },
+      "local": {
+        "title": {
+          "en": "Local files",
+          "zh": "本地文件"
+        }
+      }
+    }
+  },
+  "plugins": [
+    {
+      "name": "dsh-video-merger",
+      "title": {
+        "en": "Video Merger",
+        "zh": "视频合并"
+      },
+      "description": {
+        "en": "Merge every folder's videos into one file while keeping the source specs. Lossless concat when clips match, automatic normalization when they differ.",
+        "zh": "把每个文件夹下的视频合并成一个文件，并保持源视频规格。规格一致时无损拼接，不一致时自动转码对齐。"
+      },
+      "icon": "./icon.svg",
+      "author": "a-mochis",
+      "homepage": "https://github.com/a-mochis/dsh-video-merger",
+      "repository": {
+        "url": "https://github.com/a-mochis/dsh-video-merger"
+      },
+      "metadata": {
+        "category": "video",
+        "keywords": [
+          "video",
+          "ffmpeg",
+          "merge",
+          "concat",
+          "remux",
+          "folder"
+        ],
+        "labels": [
+          "ffmpeg",
+          "local"
+        ]
+      },
+      "versions": [
+        {
+          "version": "1.0.3",
+          "publishTimestamp": 1794127250,
+          "source": {
+            "type": "git",
+            "url": "https://github.com/a-mochis/dsh-video-merger",
+            "commit": "14ed13704db3b2750ae6ea16b8bb6d69ada32ff9"
+          },
+          "engines": {
+            "dsh": ">=0.2.0-0"
+          }
+        }
+      ]
+    }
+  ]
+}

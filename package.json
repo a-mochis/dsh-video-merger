@@ -41,7 +41,11 @@
     "README.md",
     "LICENSE",
     "CHANGELOG.md",
-    "docs/architecture.svg"
+    "docs/architecture.svg",
+    "docs/how-to-select-folder.svg",
+    "docs/how-to-merge.svg",
+    "market/index.json",
+    "market/icon.svg"
   ],
   "scripts": {
     "check": "node --check lib/index.js && node --check lib/engine.js && node --check lib/client.js && node --check bin/merge-videos.mjs",
@@ -60,7 +64,8 @@
     }
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=20",
+    "dsh": ">=0.2.0-0"
   },
   "devDependencies": {
     "react": "^18.3.1",
