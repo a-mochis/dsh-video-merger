@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="330" viewBox="0 0 960 330" role="img" aria-labelledby="title desc">
+  <title id="title">dsh-video-merger pipeline</title>
+  <desc id="desc">Scan folders, probe clips, compare specs, then either remux losslessly or normalize to the first clip before writing one output per folder.</desc>
+  <rect width="960" height="330" rx="18" fill="#f6f8fa"/>
+  <text x="48" y="48" font-family="ui-sans-serif, -apple-system, Segoe UI, sans-serif" font-size="20" font-weight="700" fill="#1f2328">dsh-video-merger pipeline</text>
+  <text x="48" y="72" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="12" fill="#57606a">one output per folder · source specs preserved</text>
+
+  <g font-family="ui-sans-serif, -apple-system, Segoe UI, sans-serif" font-size="13" fill="#1f2328">
+    <rect x="48" y="112" width="132" height="58" rx="10" fill="#ffffff" stroke="#d0d7de"/>
+    <text x="114" y="137" text-anchor="middle" font-weight="600">Scan folders</text>
+    <text x="114" y="155" text-anchor="middle" font-size="11" fill="#57606a">recursive · natural sort</text>
+
+    <rect x="220" y="112" width="132" height="58" rx="10" fill="#ffffff" stroke="#d0d7de"/>
+    <text x="286" y="137" text-anchor="middle" font-weight="600">Probe clips</text>
+    <text x="286" y="155" text-anchor="middle" font-size="11" fill="#57606a">ffprobe JSON</text>
+
+    <rect x="392" y="112" width="148" height="58" rx="10" fill="#ffffff" stroke="#d0d7de"/>
+    <text x="466" y="137" text-anchor="middle" font-weight="600">Specs match?</text>
+    <text x="466" y="155" text-anchor="middle" font-size="11" fill="#57606a">codec · size · fps · audio</text>
+
+    <rect x="586" y="56" width="152" height="58" rx="10" fill="#eef6ff" stroke="#8cbcf5"/>
+    <text x="662" y="81" text-anchor="middle" font-weight="600">Lossless concat</text>
+    <text x="662" y="99" text-anchor="middle" font-size="11" fill="#57606a">-c copy · no re-encode</text>
+
+    <rect x="586" y="168" width="152" height="58" rx="10" fill="#fff8e6" stroke="#e7c56a"/>
+    <text x="662" y="193" text-anchor="middle" font-weight="600">Normalize</text>
+    <text x="662" y="211" text-anchor="middle" font-size="11" fill="#57606a">scale · fps · audio pad</text>
+
+    <rect x="782" y="112" width="130" height="58" rx="10" fill="#ecfdf3" stroke="#7cd4a5"/>
+    <text x="847" y="137" text-anchor="middle" font-weight="600">Write output</text>
+    <text x="847" y="155" text-anchor="middle" font-size="11" fill="#57606a">same folder / unified</text>
+  </g>
+
+  <g stroke="#57606a" stroke-width="1.6" fill="none">
+    <path d="M180 141 H216" marker-end="url(#arrow)"/>
+    <path d="M352 141 H388" marker-end="url(#arrow)"/>
+    <path d="M540 133 C560 133 566 90 582 88" marker-end="url(#arrow)"/>
+    <path d="M540 149 C560 149 566 194 582 196" marker-end="url(#arrow)"/>
+    <path d="M738 85 C760 85 766 133 778 136" marker-end="url(#arrow)"/>
+    <path d="M738 197 C760 197 766 149 778 146" marker-end="url(#arrow)"/>
+  </g>
+
+  <g font-family="ui-sans-serif, -apple-system, Segoe UI, sans-serif" font-size="11">
+    <text x="560" y="102" fill="#1f6feb">yes</text>
+    <text x="560" y="196" fill="#9a6700">no</text>
+  </g>
+
+  <text x="48" y="282" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="11" fill="#57606a">progress: -progress pipe:1 → per-folder % · speed · ETA</text>
+  <text x="48" y="302" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="11" fill="#57606a">output: &lt;folder&gt;_merged.&lt;ext&gt; · nested prefixes a_b_merged.mp4 when unified</text>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#57606a"/>
+    </marker>
+  </defs>
+</svg>

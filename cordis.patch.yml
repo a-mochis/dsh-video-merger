@@ -1,0 +1,4 @@
+- insert:
+    - id: video-merger
+      name: dsh-video-merger
+      config: {}

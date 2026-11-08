@@ -1,0 +1,53 @@
+name: Bug report
+description: Something merged incorrectly, failed, or the UI misbehaved.
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please remove private paths and personal information from logs before posting.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you expect, and what did the plugin do instead?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open the 视频合并 tab
+        2. Select ...
+        3. Click 开始合并
+    validations:
+      required: true
+  - type: input
+    id: dsh-version
+    attributes:
+      label: DSH version
+      placeholder: e.g. 0.x.y
+  - type: input
+    id: ffmpeg
+    attributes:
+      label: ffmpeg version
+      description: Output of `ffmpeg -version | head -n 1`, or the build directory.
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options:
+        - Windows
+        - macOS
+        - Linux
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs / ffprobe output
+      description: Paste the error message and the source clip specs if the merge failed.
+      render: shell
