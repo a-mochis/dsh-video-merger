@@ -49,7 +49,8 @@
   ],
   "scripts": {
     "check": "node --check lib/index.js && node --check lib/engine.js && node --check lib/client.js && node --check bin/merge-videos.mjs",
-    "test": "node test/browse.mjs && node test/render.mjs",
+    "test": "node test/market.mjs && node test/browse.mjs && node test/render.mjs",
+    "test:market": "node test/market.mjs",
     "test:merge": "node test/run.mjs",
     "fixtures": "node test/make-fixtures.mjs"
   },
