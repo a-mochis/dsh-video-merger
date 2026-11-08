@@ -30,6 +30,7 @@ Only mixed folders are normalized, and then to the first clip's spec.
 - [ffmpeg resolution](#ffmpeg-resolution)
 - [Development](#development)
 - [Limitations](#limitations)
+- [Troubleshooting](#troubleshooting)
 - [License](#license)
 - [中文说明](#中文说明)
 
@@ -255,6 +256,28 @@ expectations.
 - Merging very large folders needs temporary disk space roughly equal to the
   output size.
 - Auto-download of ffmpeg is Windows-only.
+
+## Troubleshooting
+
+**“ffmpeg not found”.** Install ffmpeg and ffprobe and put them on `PATH`, or set
+`ffmpegDir` in the plugin settings / `merge_folder_videos` call. The Web UI shows
+the resolved binary under the status card; on Windows the **Download ffmpeg**
+button installs the official essentials build into the plugin data directory.
+
+**“No folders with at least two videos”.** The scan skips single clips and
+outputs ending in `_merged`. Pick the parent folder, not one clip's folder.
+
+**A folder is marked “混合规格·自动转码”.** The clips differ in resolution, frame
+rate, pixel format, or audio layout. The first clip is the target; the folder is
+re-encoded to it before concatenation. Turn off the normalization option to make
+the job fail instead.
+
+**A merge fails midway.** The per-folder error is shown in the list and in the
+tool result. The temporary concat list and partial output are removed. Re-run
+with **Overwrite** enabled; the job is resumable per folder, not per clip.
+
+**The page shows the old UI after an update.** Force-refresh with
+`Ctrl+Shift+R` (macOS `Cmd+Shift+R`); a client bundle is cached per page load.
 
 ## License
 
