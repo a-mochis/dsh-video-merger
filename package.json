@@ -40,6 +40,7 @@
     "cordis.patch.yml",
     "README.md",
     "LICENSE",
+    "SECURITY.md",
     "CHANGELOG.md",
     "docs/architecture.svg",
     "docs/how-to-select-folder.svg",
