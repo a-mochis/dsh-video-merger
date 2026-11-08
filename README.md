@@ -75,6 +75,9 @@ git clone https://github.com/a-mochis/dsh-video-merger.git
 plugin_manager install_bundle target = E:\code\6-plugins\dsh-video-merger
 ```
 
+Or download the packaged zip from the [latest release](https://github.com/a-mochis/dsh-video-merger/releases/latest),
+unzip it, and install the extracted folder the same way.
+
 After installing or updating, force-refresh the Web UI (`Ctrl+Shift+R`). Open any
 session and choose the **视频合并 / Video Merge** tab in the session tab bar.
 
