@@ -93,7 +93,8 @@ https://cdn.jsdelivr.net/gh/a-mochis/dsh-video-merger@main/market/index.json
 
 The **Video Merger** card then appears in Discover and installs the same bundle.
 This is a personal index hosted beside the project, not an entry in the curated
-community catalog.
+community catalog. See [docs/marketplace.md](docs/marketplace.md) for the
+release/update checklist.
 
 > The plugin has no runtime npm dependencies. `npm install` is only needed for
 > the client tests (`react` / `react-dom` are dev dependencies).
