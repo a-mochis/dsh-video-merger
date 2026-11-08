@@ -71,7 +71,7 @@
           "source": {
             "type": "git",
             "url": "https://github.com/a-mochis/dsh-video-merger",
-            "commit": "14ed13704db3b2750ae6ea16b8bb6d69ada32ff9"
+            "commit": "5a50b272c627214a3945f84880e86cb3a55aa5c1"
           },
           "engines": {
             "dsh": ">=0.2.0-0"
