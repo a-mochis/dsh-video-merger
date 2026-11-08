@@ -285,6 +285,16 @@ git clone https://github.com/a-mochis/dsh-video-merger.git
 plugin_manager install_bundle target = <dsh-video-merger 的绝对路径>
 ```
 
+The profile package can also be installed from a terminal with the DSH CLI:
+
+```bash
+dsh plugin --profile desktop add git+https://github.com/a-mochis/dsh-video-merger.git
+```
+
+`plugin_manager install_bundle` additionally enables the bundle in the profile;
+after a bare `dsh plugin add`, make sure `dsh-video-merger` is listed under
+`dsh.profile.bundles` in the profile's `package.json`.
+
 安装或更新后强制刷新页面，在会话顶部打开「视频合并」。
 
 ### 使用
