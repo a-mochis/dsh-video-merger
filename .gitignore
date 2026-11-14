@@ -1,6 +1,8 @@
 node_modules/
 test/fixtures/
 test/output/
+.bench/
+.tmp-*/
 *.zip
 *.log
 .DS_Store

@@ -3,13 +3,15 @@
 **Merge every folder's videos into one file — without changing the video spec.**
 
 A [DeepSeek Harness](https://github.com/deepseek-ai) plugin that scans a folder
-tree, groups the videos by folder, and writes one merged video per folder. When
-the clips in a folder already share the same codec, resolution, frame rate,
-pixel format, and audio layout, the merge is a **lossless remux** (`-c copy`).
-Only mixed folders are normalized, and then to the first clip's spec.
+tree, groups the videos by folder, and writes one merged video per folder. It
+picks the cheapest safe path for each folder: **stream copy** when the clips are
+truly identical, **timestamp-safe remux** when only the container or start time
+differs, **audio-only repair** when the video matches but the audio does not, and
+a **single-pass hardware-accelerated encode** only when the streams really differ.
 
-按文件夹合并视频：每个包含至少 2 个视频的文件夹生成一个合并文件。规格一致时
-无损拼接、不重新编码；规格不一致时才转码对齐到第一个视频。
+按文件夹合并视频：每个包含至少 2 个视频的文件夹生成一个合并文件。完全一致时
+无损拼接；仅容器/时间戳不同则重封装；仅音频不同只修音频；真正规格不一致时才
+单遍转码（优先 NVENC/QSV/AMF，失败自动回退 x264）。
 
 [![CI](https://github.com/a-mochis/dsh-video-merger/actions/workflows/ci.yml/badge.svg)](https://github.com/a-mochis/dsh-video-merger/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-yellow.svg)](LICENSE)
@@ -40,8 +42,15 @@ Only mixed folders are normalized, and then to the first clip's spec.
   merges every folder with at least two videos. Natural file-name ordering.
 - **Lossless by default.** Matching clips are concatenated with the ffmpeg concat
   demuxer and stream copy. No quality loss, no re-encode, same container.
-- **Automatic fallback.** Mixed resolutions, frame rates, codecs, or audio layouts
-  are normalized to the first clip, then concatenated.
+- **Smooth seams.** The copy path validates profile, level, time base, SAR,
+  rotation, colour metadata and VFR, and automatically falls back to an
+  MPEG-TS remux if ffmpeg reports a timestamp warning. This removes the
+  frozen/duplicated frames that a naive `-c copy` can produce.
+- **Audio-only repair.** If the video streams match but the audio layout or
+  sample rate differs, only the audio is re-encoded; video stays untouched.
+- **One encode pass, hardware first.** Truly mixed clips are joined with a single
+  concat filter and encoded once (not once per clip), using NVENC → QSV → AMF →
+  libx264 (or HEVC equivalents) with automatic fallback.
 - **Optional unified output.** Put every result in one folder (defaults to the
   scanned root), or keep the original per-folder layout.
 - **Web UI.** In-app directory browser, folder checklist, live progress, speed,
@@ -187,27 +196,52 @@ Exit codes: `0` all succeeded, `1` at least one failure, `2` bad arguments,
 ## How it works
 
 ```text
-scan folders → ffprobe every clip → compare signatures
-                                    ├─ equal   → concat demuxer + -c copy
-                                    └─ unequal → normalize to first clip
-                                                 (scale/pad/fps/yuv420p/audio)
-                                              → concat demuxer + -c copy
+scan folders → ffprobe every clip → compare strict signatures
+  ├─ identical streams, time base and start → concat demuxer + -c copy
+  ├─ video identical, audio differs        → copy video + encode audio
+  ├─ streams identical, container differs  → per-clip TS remux + concat copy
+  └─ streams really differ                 → single concat-filter encode
+                                             (NVENC/QSV/AMF → x264 fallback)
 ```
 
-The signature used for the comparison is:
+The copy signature is deliberately strict:
 
 ```text
-video: codec | width | height | pixel format | frame rate
-audio: codec | sample rate | channels        (or "no audio")
+video: codec | profile | level | width | height | pixel format | fps | avg fps |
+       SAR | rotation | field order | colour space/primaries/transfer/range |
+       time base
+audio: codec | profile | sample rate | channels | channel layout  (or "no audio")
 ```
 
-- **Lossless path:** `-f concat -safe 0 -i list -map 0:v:0 -map 0:a? -c copy`
-  with `-fflags +genpts -avoid_negative_ts make_zero`.
-- **Normalize path:** scales and pads to the target size, converts to `yuv420p`,
-  forces the target frame rate, encodes H.264 (`libx264`, `veryfast`, CRF 18) and
-  AAC 192 kbps. A silent track is generated when the target has audio but a clip
-  does not.
+- **Copy path:** `-f concat -safe 0 -i list -map 0:v:0 -map 0:a? -c copy`.
+  If ffmpeg prints a non-monotonic/DTS warning (or fails), the folder is
+  automatically redone through the remux path.
+- **Remux path:** each clip is first remuxed to MPEG-TS so every segment starts
+  at zero and shares a 90 kHz time base, then the segments are concatenated with
+  `-c copy` and written as MP4 with `-video_track_timescale 30000`.
+- **Audio fix path:** video is stream-copied; a single AAC track is encoded from
+  the concatenated audio, with silence generated for silent clips.
+- **Encode path:** one `concat` filter produces a single output generation;
+  resolution/fps come from the first clip, `yuv420p`, H.264/HEVC hardware
+  encoder when available, AAC 192 kbps. A silent track is generated only when the
+  target folder has audio.
 - Progress comes from `-progress pipe:1 -nostats` (`out_time_us` and `speed`).
+
+## Performance notes
+
+- **One generation, not N.** The old fallback encoded every clip to an
+  intermediate file and then concatenated; the new path encodes the whole folder
+  once. That also avoids quality loss from repeated generations.
+- **No double fast-start.** Intermediate files no longer rewrite their index.
+- **Hardware encode.** NVENC is probed once per ffmpeg build and cached. If the
+  driver or GPU cannot open an encoder session, the next candidate is tried; the
+  final fallback is always libx264/libx265.
+- **No unnecessary work.** Matching folders are pure I/O; audio-only differences
+  never touch the video stream; only genuinely mixed folders are encoded.
+- **Why it used to stutter.** Matching was based on too few fields, and
+  `-fflags +genpts -avoid_negative_ts make_zero` was applied to `-c copy`, which
+  can make the second clip's timestamps collide with the first. The stricter
+  signature plus the TS-remux fallback removes that class of seams.
 
 ## ffmpeg resolution
 
@@ -272,10 +306,11 @@ button installs the official essentials build into the plugin data directory.
 **“No folders with at least two videos”.** The scan skips single clips and
 outputs ending in `_merged`. Pick the parent folder, not one clip's folder.
 
-**A folder is marked “混合规格·自动转码”.** The clips differ in resolution, frame
-rate, pixel format, or audio layout. The first clip is the target; the folder is
-re-encoded to it before concatenation. Turn off the normalization option to make
-the job fail instead.
+**A folder shows “转码 / Transcode”.** The clips really differ in resolution,
+frame rate, pixel format, or codec. The first clip is the target; the folder is
+encoded once with the concat filter. “重封装 / Remux” means only the container or
+start time differed and no video was re-encoded. Turn off the normalization
+option to make truly mixed folders fail instead.
 
 **A merge fails midway.** The per-folder error is shown in the list and in the
 tool result. The temporary concat list and partial output are removed. Re-run
@@ -295,9 +330,12 @@ with **Overwrite** enabled; the job is resumable per folder, not per clip.
 ### 功能
 
 - 递归扫描根目录，每个含至少 2 个视频的文件夹合并成一个文件。
-- 规格一致时使用 concat demuxer + `-c copy`，**无损、不重新编码**。
-- 规格不一致时（默认开启）以第一个视频为基准转码对齐，再拼接；缺失音轨的片段
-  会补静音。
+- 完全一致时使用 concat demuxer + `-c copy`，**无损、不重新编码**。
+- 仅容器或起始时间不同：先逐段转 MPEG-TS，再 `-c copy` 重封装，避免接缝卡顿。
+- 视频一致、音频参数不同：只重新编码音频（AAC），视频保持原样。
+- 真正规格不一致时（默认开启）以第一个视频为基准，用一次 concat filter 完成
+  单遍转码；优先 NVENC/QSV/AMF，失败自动回退 x264/x265。缺失音轨的片段补静音。
+- 进度会显示每个文件夹的处理方式（无损 / 重封装 / 修音频 / 转码 + 编码器）。
 - 可把所有结果统一输出到一个文件夹（默认扫描根目录），也可以保持写回各源文件夹。
 - Web UI 支持目录浏览、文件夹勾选、实时进度、取消、播放和定位。
 - 顶部「管理」弹窗可清空当前选择、历史文件夹记录或历史生成记录，也可一键清空全部。

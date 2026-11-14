@@ -16,7 +16,7 @@ function run(ffmpeg, args) {
   }
 }
 
-function clip(ffmpeg, file, { width, height, fps, seconds, audio, ext }) {
+function clip(ffmpeg, file, { width, height, fps, seconds, audio, ext, offset }) {
   const args = [
     "-f", "lavfi", "-i", `testsrc2=size=${width}x${height}:rate=${fps}:duration=${seconds}`,
   ];
@@ -26,6 +26,7 @@ function clip(ffmpeg, file, { width, height, fps, seconds, audio, ext }) {
   }
   args.push("-c:v", "libx264", "-preset", "ultrafast", "-pix_fmt", "yuv420p");
   if (audio) args.push("-shortest");
+  if (offset) args.push("-output_ts_offset", String(offset));
   args.push("-t", String(seconds), file);
   run(ffmpeg, args);
 }
@@ -37,13 +38,14 @@ function clip(ffmpeg, file, { width, height, fps, seconds, audio, ext }) {
  * - setC: two Matroska clips         -> keep the .mkv container
  * - setD: a file name with an quote   -> concat list escaping
  * - setE: one with audio, one silent  -> borrowed audio + silence padding
+ * - setF: same streams, 0.5s offset   -> remux through MPEG-TS
  * - single: one clip                  -> must be skipped
  */
 export async function makeFixtures(ffmpeg) {
   await fsp.rm(FIXTURE_ROOT, { recursive: true, force: true });
 
   const dirs = Object.fromEntries(
-    ["setA", "setB", "setC", "setD", "setE", "single"].map((name) => [name, path.join(FIXTURE_ROOT, name)]),
+    ["setA", "setB", "setC", "setD", "setE", "setF", "single"].map((name) => [name, path.join(FIXTURE_ROOT, name)]),
   );
   await Promise.all(Object.values(dirs).map((dir) => fsp.mkdir(dir, { recursive: true })));
 
@@ -64,6 +66,9 @@ export async function makeFixtures(ffmpeg) {
 
   clip(ffmpeg, path.join(dirs.setE, "01-with-audio.mp4"), common);
   clip(ffmpeg, path.join(dirs.setE, "02-silent.mp4"), { ...common, audio: false });
+
+  clip(ffmpeg, path.join(dirs.setF, "01-first.mp4"), { ...common, offset: 0.5 });
+  clip(ffmpeg, path.join(dirs.setF, "02-second.mp4"), { ...common, offset: 0.5 });
 
   clip(ffmpeg, path.join(dirs.single, "only.mp4"), common);
 

@@ -4,20 +4,41 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.1.0] - 2026-11-14
 
 ### Added
 
+- Four explicit merge paths: lossless copy, MPEG-TS remux, audio-only repair,
+  and single-pass encode. The UI shows which path and encoder each folder used.
+- Hardware encoder detection with automatic fallback: NVENC → QSV → AMF →
+  libx264/libx265. The probe result is cached per ffmpeg binary.
+- `test/fixtures.mjs` setF (non-zero start time) to cover the remux path; the
+  end-to-end test now asserts the merge mode as well as the output spec.
+- `test/market.mjs`, which checks the index against `package.json`.
 - Format-1 market index (`market/index.json`) and icon for Discover, plus a
   marketplace publishing guide.
 - Step-by-step screenshots for choosing a folder and starting a merge.
-- `test/market.mjs`, which checks the index against `package.json`.
 - Security policy and troubleshooting guide.
 
 ### Changed
 
+- Copy signatures now include profile, level, time base, SAR, rotation, field
+  order, colour metadata, VFR and audio profile/layout. This prevents clips that
+  only looked equal from being stream-copied.
+- The old `-fflags +genpts -avoid_negative_ts make_zero` copy path is gone; a
+  timestamp warning or copy failure now falls back to a TS remux.
+- The encode path joins all clips with one concat filter instead of encoding
+  every clip to an intermediate file. Intermediate fast-start rewrites are gone.
+- Video-only differences no longer trigger a video re-encode; audio-only
+  differences are repaired without touching the video stream.
 - Documented the `dsh plugin add` installation path alongside
   `plugin_manager install_bundle`.
+
+### Fixed
+
+- Stuttering and frozen frames at segment seams caused by incorrectly matching
+  clips and by `-c copy` with forced timestamp generation.
+- Excessive work on folders where only audio parameters differed.
 
 ## [1.0.4] - 2026-11-08
 

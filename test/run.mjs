@@ -83,12 +83,14 @@ const specs = {
   setC: { width: 320, height: 240, fps: "30/1", audio: true, ext: ".mkv" },
   setD: { width: 320, height: 240, fps: "30/1", audio: true, ext: ".mp4" },
   setE: { width: 320, height: 240, fps: "30/1", audio: true, ext: ".mp4" },
+  setF: { width: 320, height: 240, fps: "30/1", audio: true, ext: ".mp4", mode: "remux" },
 };
 
 for (const [name, expected] of Object.entries(specs)) {
   const folder = byName.get(name);
   assert.ok(folder, `missing folder ${name}`);
   assert.equal(path.extname(folder.output), expected.ext, `${name}: wrong container`);
+  if (expected.mode) assert.equal(folder.mode, expected.mode, `${name}: wrong merge mode`);
   const probe = await probeMedia(ff.ffprobe, folder.output);
   assert.equal(probe.video.width, expected.width, `${name}: width`);
   assert.equal(probe.video.height, expected.height, `${name}: height`);
