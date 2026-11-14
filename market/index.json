@@ -66,12 +66,12 @@
       },
       "versions": [
         {
-          "version": "1.0.4",
-          "publishTimestamp": 1794144572,
+          "version": "1.1.0",
+          "publishTimestamp": 1794648100,
           "source": {
             "type": "git",
             "url": "https://github.com/a-mochis/dsh-video-merger",
-            "commit": "4b2bf84362b9a9cc3a13f39690eea23fe3fe7cde"
+            "commit": "4f412d6869c121c636c5157a6aa34f6f3d918714"
           },
           "engines": {
             "dsh": ">=0.2.0-0"
