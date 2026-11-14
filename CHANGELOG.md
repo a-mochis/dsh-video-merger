@@ -11,7 +11,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Four explicit merge paths: lossless copy, MPEG-TS remux, audio-only repair,
   and single-pass encode. The UI shows which path and encoder each folder used.
 - Hardware encoder detection with automatic fallback: NVENC → QSV → AMF →
-  libx264/libx265. The probe result is cached per ffmpeg binary.
+  libx264/libx265. The probe result is cached per ffmpeg binary. If a hardware
+  encoder fails mid-run, the folder is retried once with the software encoder.
 - `test/fixtures.mjs` setF (non-zero start time) to cover the remux path; the
   end-to-end test now asserts the merge mode as well as the output spec.
 - `test/market.mjs`, which checks the index against `package.json`.
